@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <link href='main.css' rel='stylesheet' type='text/css'>
+  <!--Custom CSS-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <!--Fonts-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <!--D3-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.3/tabletop.js"></script>
+  <!--Tabletop-->
+</head>
+
+<body>
+
+  <h2>PIAS</h2>
+  <p style="text-align: center;">Para ver los datos: Click derecho > Inspeccionar > Consola</p>
+
+  <script>
+    // drawChart contains all D3 code
+    function drawChart(data) {
+
+      // ENTIDADES
+      var entidades = data.Entidades.elements;
+      for (var i = 0; i < entidades.length; i++) {
+        // console.log(entidades[i]);
+      }
+
+      // GRUPOS DE INVESTIGACIÓN
+      var grupos_investigacion = data.grupo_investigacion.elements;
+      for (var i = 0; i < grupos_investigacion.length; i++) {
+        console.log(grupos_investigacion[i].grupo_investigacion);
+      }
+
+
+    };
+
+    ////////////////////////////////// Tabletop //////////////////////////////////
+    var pias = '1k1evTzwDEkuKoZQs9GT4Ny4ywPKXlXJzQuB8kZcfhBs';
+
+    var options = {
+      key: pias,
+      callback: draw
+    }
+
+    function renderSpreadsheetData() {
+      Tabletop.init(options)
+    }
+
+    function draw(data, tabletop) {
+      drawChart(data);
+    }
+
+    renderSpreadsheetData();
+  </script>
+</body>

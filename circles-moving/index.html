@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+		<!-- Source: Adaptation of Nadieh Bremer code: http://bl.ocks.org/nbremer/077ef487fefcff72a02605422298e2b3 -->
+
+		<style>
+			body {
+				text-align: center;
+				font-family: 'Open Sans', sans-serif;
+				font-weight: 400;
+			}
+		</style>
+
+	</head>
+	<body>
+
+		<div id="movingCircles"></div>
+
+		<script language="javascript" type="text/javascript">
+
+			var margin = {
+				top: 50,
+				right: 50,
+				bottom: 20,
+				left: 50
+			};
+			var width = document.getElementById('movingCircles').offsetWidth - margin.left - margin.right - 10,
+				height = 400;
+
+			//SVG container
+			var svg = d3.select('#movingCircles')
+				.append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+				.attr("transform", "translate(" + (margin.left + width/2) + "," + (margin.top + height/2) + ")");
+
+			var color = "#F92672";
+
+			//////////////////////////////// Create Data //////////////////////////////
+			var steps = 32;
+			var flyCircleData = [];
+			for (var i = 0; i < steps; i++) {
+				flyCircleData.push({
+					id: i,
+					fixedAngle: (i/steps)*(2*Math.PI)+0.01
+				})
+			}
+
+			//////////////////////// Create fly out circles ///////////////////////////
+			var circleWrapper = svg.append("g")
+				.attr("class", "circleWrapper");
+
+			var flyCircles = circleWrapper.selectAll(".flyCircle")
+				.data(flyCircleData)
+				.enter().append("circle")
+				.attr("class", "flyCircle")
+				.attr("transform", function(d,i) { return "rotate(" + (d.fixedAngle*180/Math.PI - 90) + ")"; })
+				.attr("cx", 0)
+				.attr("cy", 0)
+				.attr("r", 12)
+				.style("fill", color);
+
+			//Append circle at center
+			circleWrapper.append("circle")
+					.attr("class", "centerCircle")
+					.attr("cx", 0)
+					.attr("cy", 0)
+					.attr("r", 25)
+					.style("fill", color);
+
+			movement();
+
+			//Continuously moves the circles outward and inward
+			function movement() {
+				var dur = 1000,
+						del = 15;
+
+				//Move circles
+				d3.selectAll(".flyCircle")
+					.transition("flyOut").duration(dur)
+					.delay(function(d,i) { return d.id*del; })
+					.ease("elastic")
+					.attr("cx", height/2*0.8 );
+
+			}
+
+		</script>
+
+	</body>
+</html>

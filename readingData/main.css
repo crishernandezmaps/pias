@@ -1,0 +1,88 @@
+body {
+  margin:0;
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+}
+
+svg {
+  width:100%;
+  height: 100%;
+}
+
+h2 {
+  font-family: Open Sans;
+  text-align: center;
+  font-size: 3em;
+}
+
+.chart text {
+  fill: white;
+  font: 11px sans-serif;
+  text-anchor: end;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #969696;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.limit-line {
+  stroke: #de2d26;
+  width: 3px;
+}
+.label {
+  font: 8px sans-serif;
+}
+.label2 {
+  font: 7px sans-serif;
+}
+
+.pd {
+  fill: #ff8c00;
+}
+.m5s {
+  fill: #ffff00;
+}
+.fi {
+  fill: #1e5fe0;
+}
+.ln {
+  fill: #008000;
+}
+.ncd-udc {
+  fill: #5d7f96;
+}
+.aet {
+  fill: #dc143c;
+}
+.fdl-an {
+  fill: #000080;
+}
+.gi-ve {
+  fill: #52d017;
+}
+.se {
+  fill: #52d017;
+}
+.idv {
+  fill: #ffd700;
+}
+.svp {
+  fill: #ffd700;
+}
+.ic-maie {
+  fill-opacity: #800080;
+}
